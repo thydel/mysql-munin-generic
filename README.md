@@ -2,7 +2,7 @@
 
 ## Context
 
-This role is to be used to activate all munin's mysql plugins available and disable the mysql_innodb one.
+This role is to be used to activate all munin's `mysql` plugins available and disable the `mysql_innodb` one.
 
 ```console
 ├── LICENSE
