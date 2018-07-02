@@ -18,4 +18,6 @@
 
 - name: Disable mysql_innodb plugin
   file: path=/etc/munin/plugins/mysql_innodb state=absent
-  notify: munin_node_restart
+
+- name: Restart munin
+  service: name=munin state=restarted
