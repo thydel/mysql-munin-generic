@@ -1,0 +1,4 @@
+---
+munin_path_plugins: /usr/share/munin/plugins
+munin_path_actives_plugins: /etc/munin/plugins
+

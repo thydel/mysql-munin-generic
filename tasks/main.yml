@@ -1,0 +1,21 @@
+---
+- name: Ensure Munin package is installed
+  apt: name=munin-node state=present
+
+- name: List all plugins available for mysql
+  shell: ls {{ munin_path_plugins }}/mysql_* | grep -v -e mysql_innodb
+  register: munin_list_plugins
+  changed_when: False
+
+- name: Create link to activate previous plugins
+  file: >
+    src="{{ item }}" 
+    dest="{{ munin_path_actives_plugins }}/{{ item | basename }}" 
+    owner=root group=root
+    state=link
+  with_items: "{{ munin_list_plugins.stdout_lines }}"
+  notify: munin_node_restart
+
+- name: Disable mysql_innodb plugin
+  file: path=/etc/munin/plugins/mysql_innodb state=absent
+  notify: munin_node_restart
