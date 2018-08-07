@@ -14,10 +14,9 @@
     owner=root group=root
     state=link
   with_items: "{{ munin_list_plugins.stdout_lines }}"
-  notify: munin_node_restart
 
 - name: Disable mysql_innodb plugin
   file: path=/etc/munin/plugins/mysql_innodb state=absent
 
 - name: Restart munin
-  service: name=munin state=restarted
+  service: name=munin-node state=restarted
